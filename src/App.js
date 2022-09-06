@@ -20,15 +20,6 @@ function tableV2(data,column){
     { field: 'name', headerName: 'Name',pinnable:true, width: 130 },
     { field: 'phone', headerName: 'Phone Number', width: 130 },
     {
-      field: 'company',
-      headerName: 'Company',
-      width: 200,
-      valueGetter: (params) =>{
-        return params.row.company.name
-      }
-    
-    },
-    {
       field: 'email',
       headerName: 'Email',
       sortable: false,
@@ -60,6 +51,23 @@ function tableV2(data,column){
       valueGetter: (params) =>
         `${params.row.address.zipcode}`,
     },
+    {
+      field: 'company',
+      headerName: 'Company Name',
+      width: 200,
+      valueGetter: (params) =>{
+        return params.row.company.name
+      }
+    },
+    {
+      field: 'catchphrase',
+      headerName: 'Catch Phrase',
+      width: 200,
+      valueGetter: (params) =>{
+        return params.row.company.catchPhrase
+      }
+    
+    },
   ];
   const columnGroupingModel = [
     {
@@ -76,7 +84,7 @@ function tableV2(data,column){
       freeReordering: true,
       headerAlign: 'center',
       headerClassName: 'super-app-theme--header',
-      children: [{ field: 'name' }, { field: 'phone' },{ field: 'company' },{ field: 'email' }],
+      children: [{ field: 'name' }, { field: 'phone' },{ field: 'email' }],
     },
     {
       groupId: 'number',
@@ -85,6 +93,14 @@ function tableV2(data,column){
       headerAlign: 'center',
       headerClassName: 'super-app-theme--header',
       children: [{ field: 'id' }],
+    },
+    {
+      groupId: 'com',
+      headerName: 'Status Company',
+      freeReordering: true,
+      headerAlign: 'center',
+      headerClassName: 'super-app-theme--header',
+      children: [{ field: 'company' },{field:'catchphrase'}],
     },
   ];
   return (

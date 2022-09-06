@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridToolbar  } from '@mui/x-data-grid';
 import React, { useState, useEffect } from 'react';
+import { borderBottomColor } from '@mui/system';
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -15,6 +16,7 @@ function createData(name, calories, fat, carbs, protein) {
 }
 function tableV2(data,column){
   const columns = [
+    { field: 'id', headerName: 'No',pinnable:true, width: 40 },
     { field: 'name', headerName: 'Name',pinnable:true, width: 130 },
     { field: 'phone', headerName: 'Phone Number', width: 130 },
     {
@@ -65,6 +67,7 @@ function tableV2(data,column){
       headerName: 'Living Information',
       freeReordering: true,
       headerAlign: 'center',
+     headerClassName: 'super-app-theme--header',
       children: [{ field: 'address' }, { field: 'street' },{ field: 'codepos' }],
     },
     {
@@ -72,11 +75,20 @@ function tableV2(data,column){
       headerName: 'Personal Information',
       freeReordering: true,
       headerAlign: 'center',
+      headerClassName: 'super-app-theme--header',
       children: [{ field: 'name' }, { field: 'phone' },{ field: 'company' },{ field: 'email' }],
+    },
+    {
+      groupId: 'number',
+      headerName: '',
+      freeReordering: true,
+      headerAlign: 'center',
+      headerClassName: 'super-app-theme--header',
+      children: [{ field: 'id' }],
     },
   ];
   return (
-    <div style={{ height: 420, width: '75%',margin:200 }}>
+    <div style={{ height: 460, width: '75%',margin:180 }}>
       <DataGrid
         sx={
         { 
@@ -84,6 +96,13 @@ function tableV2(data,column){
             backgroundColor: 'aliceblue',
             borderRadius: 2,
             boxShadow:1,
+            '& .super-app-theme--header': {
+              backgroundColor: '#1875D2',
+              color:'#FFFFFF',
+            },
+            '& .MuiDataGrid-columnSeparator': {
+              visibility: 'hidden',
+          },
         }
         }  // Sets the margin to 2 times the spacing unit = 16px
         rows={data}
@@ -91,11 +110,18 @@ function tableV2(data,column){
         pageSize={5}
         rowsPerPageOptions={[5]}
         experimentalFeatures={{ columnGrouping: true }}
-        checkboxSelection
         disableColumnMenu
         columnGroupingModel={columnGroupingModel}
         components={{ Toolbar: GridToolbar }}
-        initialState={{ pinnedColumns: { left: ['name'], right: ['actions'] } }}
+        componentsProps={{
+          toolbar: {
+            showQuickFilter: true,
+            sx:{
+              margin:2,
+            },
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
       />
     </div>
   );

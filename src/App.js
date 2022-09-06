@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { DataGrid, GridToolbar  } from '@mui/x-data-grid';
 import React, { useState, useEffect } from 'react';
-import { borderBottomColor } from '@mui/system';
+import { borderBottomColor, fontWeight } from '@mui/system';
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -64,7 +64,7 @@ function tableV2(data,column){
   const columnGroupingModel = [
     {
       groupId: 'naming',
-      headerName: 'Living Information',
+      headerName: `Living Information`,
       freeReordering: true,
       headerAlign: 'center',
      headerClassName: 'super-app-theme--header',
@@ -99,6 +99,7 @@ function tableV2(data,column){
             '& .super-app-theme--header': {
               backgroundColor: '#1875D2',
               color:'#FFFFFF',
+              borderBottom:'none',
             },
             '& .MuiDataGrid-columnSeparator': {
               visibility: 'hidden',

@@ -131,7 +131,7 @@ const ResponsiveAppBar = () => {
 
           {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0,float:'right' }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
@@ -140,7 +140,7 @@ const ResponsiveAppBar = () => {
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
+                vertical: 'right',
                 horizontal: 'right',
               }}
               keepMounted
